@@ -3,12 +3,12 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import ProductService from '../service/productService'
 
 export default function ProductList() {
-  const [products, setProducts] = useState([])
+  const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    let productService = new ProductService();
-    productService.getProducts()
-      .then(result => setProducts(result.data.data))
+    let courseService = new ProductService();
+    courseService.getCourses()
+      .then(result => setCourses(result.data.data))
   }, [])
   return (
     <Table celled>
@@ -22,11 +22,11 @@ export default function ProductList() {
 
       <Table.Body>
         {
-          products.map(product => (
-            <Table.Row key={product.categoryId}>
-              <Table.Cell>{product.courseName}</Table.Cell>
-              <Table.Cell>{product.description}</Table.Cell>
-              <Table.Cell>{product.price}</Table.Cell>
+          courses.map(course => (
+            <Table.Row key={course.categoryId}>
+              <Table.Cell>{course.courseName}</Table.Cell>
+              <Table.Cell>{course.description}</Table.Cell>
+              <Table.Cell>{course.price}</Table.Cell>
             </Table.Row>
           ))
         }
