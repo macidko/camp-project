@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Icon, Menu, Table } from 'semantic-ui-react'
 import ProductService from '../service/productService'
+import { Link } from 'react-router-dom'
 
 export default function ProductList() {
   const [courses, setCourses] = useState([])
@@ -24,7 +25,10 @@ export default function ProductList() {
         {
           courses.map(course => (
             <Table.Row key={course.categoryId}>
-              <Table.Cell>{course.courseName}</Table.Cell>
+              <Table.Cell><Link to={`/courses/${course.courseId}`}>{course.courseName}</Link></Table.Cell>
+              {/* 
+              <Table.Cell as="NavLink" to={`/courses/${course.courseId}`}></Table.Cell>
+              */}
               <Table.Cell>{course.description}</Table.Cell>
               <Table.Cell>{course.price}</Table.Cell>
             </Table.Row>

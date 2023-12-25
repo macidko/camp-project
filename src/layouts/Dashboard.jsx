@@ -3,6 +3,9 @@ import Categories from "./Categories";
 import ProductList from "../pages/ProductList";
 import "./Dashboard.css"
 import { Grid } from 'semantic-ui-react'
+import { Route, Routes } from "react-router-dom";
+import ProductDetail from "../pages/ProductDetail";
+import CartDetail from "../pages/CartDetail";
 
 export default function Dashboard() {
   return (
@@ -13,7 +16,13 @@ export default function Dashboard() {
             <Categories />
           </Grid.Column>
           <Grid.Column width={12}>
-            <ProductList />
+            <Routes>
+              <Route path="/" Component={ProductList}/>
+              <Route path="/courses" Component={ProductList}/>
+              {/* useParams router-dom'daki parametreleri alır. ":id" */}
+              <Route path="/courses/:id" Component={ProductDetail}/>
+              <Route path="/cart" Component={CartDetail}/>
+            </Routes>
           </Grid.Column>
         </Grid.Row>
       </Grid>
