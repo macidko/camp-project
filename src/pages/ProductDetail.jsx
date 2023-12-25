@@ -33,10 +33,10 @@ export default function ProductDetail() {
           <Card.Content extra>
             <div className='ui two buttons'>
               <Button basic color='green'>
-                Approve
+                Sepete Ekle
               </Button>
               <Button basic color='red'>
-                Decline
+                Sepetten Kaldır
               </Button>
             </div>
           </Card.Content>
