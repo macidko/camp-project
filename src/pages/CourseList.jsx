@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Icon, Menu, Table } from 'semantic-ui-react'
-import ProductService from '../service/productService'
+import { Icon, Menu, Table, Button } from 'semantic-ui-react'
+import CourseService from '../service/courseService'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../store/actions/cartActions'
+import { toast } from 'react-toastify'
 
 export default function ProductList() {
+  //bir fonksiyonu çağırmak istenmesi
+  const dispatch = useDispatch()
+
   const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    let courseService = new ProductService();
+    let courseService = new CourseService();
     courseService.getCourses()
       .then(result => setCourses(result.data.data))
   }, [])
+
+  const handleAddToCart = (course) => {
+    dispatch(addToCart(course))
+    toast.success(`test`)
+  }
+
   return (
     <Table celled>
       <Table.Header>
@@ -18,6 +30,7 @@ export default function ProductList() {
           <Table.HeaderCell>Kurs Adı</Table.HeaderCell>
           <Table.HeaderCell>Kurs Açıklaması</Table.HeaderCell>
           <Table.HeaderCell>Fiyat</Table.HeaderCell>
+          <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -31,6 +44,7 @@ export default function ProductList() {
               */}
               <Table.Cell>{course.description}</Table.Cell>
               <Table.Cell>{course.price}</Table.Cell>
+              <Table.Cell><Button onClick={() => handleAddToCart(course)}>Sepete Ekle</Button></Table.Cell>
             </Table.Row>
           ))
         }

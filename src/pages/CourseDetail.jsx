@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, Card, Image } from 'semantic-ui-react'
-import ProductService from '../service/productService';
+import CourseService from '../service/courseService';
 
 
 export default function ProductDetail() {
@@ -10,7 +10,7 @@ export default function ProductDetail() {
   const [course, setCourse] = useState({})
 
   useEffect(() => {
-    let courseService = new ProductService();
+    let courseService = new CourseService();
     courseService.getCourseById(id)
       .then(result => setCourse(result.data.data))
   }, [])
