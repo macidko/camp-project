@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CartSummary from './CartSummary'
-import { Button, Container, Menu } from 'semantic-ui-react'
+import { Container, Menu } from 'semantic-ui-react'
 import SignedOut from './SignedOut'
 import SignedIn from './SignedIn'
 import { useNavigate } from "react-router-dom"
