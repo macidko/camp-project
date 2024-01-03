@@ -20,7 +20,7 @@ export default function ProductList() {
 
   const handleAddToCart = (course) => {
     dispatch(addToCart(course))
-    toast.success(`test`)
+    toast.success(`${course.courseName} sepete eklendi`)
   }
 
   return (

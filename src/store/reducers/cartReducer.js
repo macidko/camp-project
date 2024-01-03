@@ -8,7 +8,8 @@ const initialState = {
 export default function cartReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ADD_TO_CART:
-      let course = state.cartItems.find((c) => c.course.id === payload.id);
+      let course = state.cartItems.find((c) => c.course.courseId === payload.courseId);
+      console.log(course);
       if (course) {
         course.quantity++;
         return {
@@ -23,7 +24,7 @@ export default function cartReducer(state = initialState, { type, payload }) {
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cartItems: state.cartItems.filter((c) => c.course.id !== payload.id),
+        cartItems: state.cartItems.filter((c) => c.course.courseId !== payload.courseId),
       };
     default:
       return state;
