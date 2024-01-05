@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Navi />
       <Container className="main">
+        {/* router component */}
         <Dashboard></Dashboard>
       </Container>
     </div>

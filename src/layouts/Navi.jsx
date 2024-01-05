@@ -7,14 +7,20 @@ import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 export default function Navi() {
-    const {cartItems} = useSelector(state => state.cart)
+    const { cartItems } = useSelector(state => state.cart)
     const [isAuthenticated, setIsAuthenticated] = useState(true)
+    // url yönlendirmesi için kullanılan router-dom hook'u
     const navigate = useNavigate()
+    // signout fonksiyonu
     function handleSignOut() {
+        // isAuthenticated state'inin false olarak ayarlanması
         setIsAuthenticated(false)
+        // anasayfaya yönlendirilmesi
         navigate("/");
     }
-    function handleSignIn(params) {
+    // signin fonksiyonu
+    function handleSignIn() {
+        // isAuthenticated state'inin true olarak ayarlanması
         setIsAuthenticated(true)
     }
 
@@ -26,8 +32,10 @@ export default function Navi() {
                     <Menu.Item name='messages' />
 
                     <Menu.Menu position='right'>
-                       {cartItems.length > 0 && <CartSummary />}
-                        {isAuthenticated ? <SignedIn signOut={handleSignOut}/> : <SignedOut signIn={handleSignIn}/>}
+                        {/* Redux storedaki initialValue'nun durumuna göre sepet componentinin gösterilmesi */}
+                        {cartItems.length > 0 && <CartSummary />}
+                        {/* isAuthenticated durumuna göre SignedIn veya SignedOut componentinin gösterilmesi */}
+                        {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignedOut signIn={handleSignIn} />}
                     </Menu.Menu>
                 </Container>
             </Menu>
